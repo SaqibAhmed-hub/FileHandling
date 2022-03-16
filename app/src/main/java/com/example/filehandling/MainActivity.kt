@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_save_external.setOnClickListener(this)
         btn_read_external.setOnClickListener(this)
 
+        /*
+        * To create a Directory in the App Specific Storage.
+        * applicationContext.getDir("MyFiles",Context.MODE_PRIVATE)
+        * */
+
     }
 
     private fun saveToExternalFile() {
