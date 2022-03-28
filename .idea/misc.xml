@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Saqid Ahmed/FileHandling/app/src/main/res/layout/activity_cache_file.xml" value="0.22708333333333333" />
         <entry key="..\:/Saqid Ahmed/FileHandling/app/src/main/res/layout/activity_main.xml" value="0.22708333333333333" />
+        <entry key="..\:/Saqid Ahmed/FileHandling/app/src/main/res/layout/activity_media.xml" value="0.22708333333333333" />
+        <entry key="..\:/Saqid Ahmed/FileHandling/app/src/main/res/layout/include_media_query.xml" value="0.22708333333333333" />
       </map>
     </option>
   </component>

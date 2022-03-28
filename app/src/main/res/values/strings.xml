@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FileHandling</string>
+    <string name="file_handling">File Handling</string>
+    <string name="enter_the_file_name">Enter the File name</string>
+    <string name="enter_the_file_content">Enter the File Content</string>
+    <string name="save">Save</string>
+    <string name="save_external">Save External</string>
+    <string name="read_external">Read External</string>
+    <string name="read">Read</string>
+    <string name="cancel">Cancel</string>
+    <string name="goto_activity">Goto</string>
 </resources>

@@ -1,11 +1,17 @@
-package com.example.filehandling
+package com.example.filehandling.ui
 
+import android.Manifest
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.example.filehandling.R
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.FileNotFoundException
@@ -13,16 +19,18 @@ import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    private val REQUEST_CODE = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        checkForPermission()
         btn_save.setOnClickListener(this)
         btn_read.setOnClickListener(this)
         btn_cancel.setOnClickListener(this)
         btn_save_external.setOnClickListener(this)
         btn_read_external.setOnClickListener(this)
+        btn_goto.setOnClickListener(this)
 
         /*
         * To create a Directory in the App Specific Storage.
@@ -115,22 +123,61 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_cancel -> clearContent()
             R.id.btn_save_external -> saveToExternalFile()
             R.id.btn_read_external -> readExternalFromFile()
+            R.id.btn_goto -> navigateToActivity()
+        }
+    }
+
+    private fun navigateToActivity() {
+        Intent(this, MediaActivity::class.java).also { intent ->
+            startActivity(intent)
         }
     }
 
     private fun readExternalFromFile() {
         val fileName = file_name.text.toString()
-        if (fileName.isNotEmpty()){
+        if (fileName.isNotEmpty()) {
             try {
-                val appSpecificExternalFile = File(applicationContext.getExternalFilesDir(null), fileName)
+                val appSpecificExternalFile =
+                    File(applicationContext.getExternalFilesDir(null), fileName)
                 file_content.setText(appSpecificExternalFile.readText(Charset.forName("UTF-8")))
-            }catch (e: FileNotFoundException){
+            } catch (e: FileNotFoundException) {
                 showToast("File Not Found")
             }
-        }else{
+        } else {
             showToast("Please Enter the filename")
         }
+    }
 
+    private fun checkForPermission() {
+        val permission = arrayOf(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        )
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, permission, REQUEST_CODE)
+        } else {
+            Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
 
