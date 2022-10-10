@@ -9,4 +9,5 @@
     <string name="read">Read</string>
     <string name="cancel">Cancel</string>
     <string name="goto_activity">Goto</string>
+    <string name="sharedstorage">SharedStorage</string>
 </resources>

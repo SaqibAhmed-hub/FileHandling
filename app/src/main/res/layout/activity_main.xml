@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_file_handling"
@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/save"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_read"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/file_content" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -53,8 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/save_external"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_read_external"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_save" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -73,8 +73,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/read"
-        app:layout_constraintStart_toEndOf="@id/btn_save"
         app:layout_constraintEnd_toStartOf="@id/btn_cancel"
+        app:layout_constraintStart_toEndOf="@id/btn_save"
         app:layout_constraintTop_toBottomOf="@id/file_content" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -88,22 +88,27 @@
         app:layout_constraintTop_toBottomOf="@id/file_content" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/file_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="5"
-        android:lineSpacingExtra="2dp"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/btn_save_external"
         android:layout_marginTop="16sp"
-        android:id="@+id/file_list"
-        />
+        android:lineSpacingExtra="2dp"
+        android:lines="5"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_save_external" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_goto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/goto_activity"
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sharedStorage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sharedstorage"
+        app:layout_constraintBottom_toTopOf="@id/btn_goto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,22 +33,6 @@ class MediaActivity : AppCompatActivity() {
         viewModel.image.observe(this) {
             mediaAdapter = MainAdapter(it)
             recyclerView.adapter = mediaAdapter
-
         }
-
-//        val listmedia = viewModel.image.value!!
-//        mediaAdapter = MainAdapter(listmedia)
-//
-//        recyclerView.layoutManager = LinearLayoutManager(this@MediaActivity)
-//        recyclerView.addItemDecoration(DividerItemDecoration(this,RecyclerView.VERTICAL))
-//        recyclerView.adapter = mediaAdapter
-//
-////        recyclerView.apply {
-//            layoutManager = LinearLayoutManager(this@MediaActivity)
-//            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
-//            adapter = adapter
-//        }
     }
-
-
 }

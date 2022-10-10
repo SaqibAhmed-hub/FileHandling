@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btn_save_external.setOnClickListener(this)
         btn_read_external.setOnClickListener(this)
         btn_goto.setOnClickListener(this)
+        btn_sharedStorage.setOnClickListener(this)
 
         /*
         * To create a Directory in the App Specific Storage.
@@ -123,13 +124,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_cancel -> clearContent()
             R.id.btn_save_external -> saveToExternalFile()
             R.id.btn_read_external -> readExternalFromFile()
-            R.id.btn_goto -> navigateToActivity()
+            R.id.btn_goto -> navigateToActivity("media")
+            R.id.btn_sharedStorage -> navigateToActivity("")
         }
     }
 
-    private fun navigateToActivity() {
-        Intent(this, MediaActivity::class.java).also { intent ->
-            startActivity(intent)
+    private fun navigateToActivity(name: String) {
+        if (name == "media") {
+            Intent(this, MediaActivity::class.java).also { intent ->
+                startActivity(intent)
+            }
+        }else{
+            Intent(this, SharedStorageActivity::class.java).also { intent ->
+                startActivity(intent)
+            }
         }
     }
 

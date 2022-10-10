@@ -35,11 +35,10 @@ class MediaViewModel(app: Application): AndroidViewModel(app) {
     * #Selection
     * #SelectionArgs
     * #SortOrder
-    *
-    *
-    * SQL Statement:
-    * SELECT @projection FROM @MediaStore WHERE @selection,@selectionArg ORDER BY @SortOrder
-    *
+    */
+
+    /* SQL Statement:
+    * SELECT @projection FROM @MediaStore URI  WHERE @selection,@selectionArg ORDER BY @SortOrder
     * */
 
     private suspend fun queryImage(): List<MediaStoreImage> {
@@ -61,7 +60,6 @@ class MediaViewModel(app: Application): AndroidViewModel(app) {
                 sortOrder
             )?.use { cursor ->
                 Log.i("TAG", "queryImage: ${cursor.columnCount}")
-
                 val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
                 val dateModifiedColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_ADDED)
                 val displayNameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
