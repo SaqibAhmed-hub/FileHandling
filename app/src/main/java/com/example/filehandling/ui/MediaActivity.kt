@@ -5,10 +5,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.example.filehandling.R
 import com.example.filehandling.adapter.MainAdapter
 import com.example.filehandling.viewModel.MediaViewModel
@@ -31,7 +28,8 @@ class MediaActivity : AppCompatActivity() {
         recyclerView.layoutManager = GridLayoutManager(this@MediaActivity,2)
 
         viewModel.image.observe(this) {
-            mediaAdapter = MainAdapter(it)
+            Log.i("TAG", "onCreate: $it")
+            mediaAdapter = MainAdapter(this@MediaActivity,it)
             recyclerView.adapter = mediaAdapter
         }
     }
